@@ -38,13 +38,41 @@
         </div>
       </span>
     </div>
+    <div class="func-btns func-btns-down">
+      <span class="func-item">
+          <a href="#" target="_blank"><i class="icon iconfont icon-shiyan"><span>技术</span></i></a>
+          <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+            <p class="seperator"><a href="#" target="_blank">开源项目</a></p>
+            <p class="seperator"><a href="#" target="_blank">技术交流</a></p>
+            <p><a href="#" target="_blank">论坛</a></p>
+          </div>
+      </span>
+      <span class="func-item">
+          <i class="icon iconfont icon-liuyan"><span>留言</span></i>
+          <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+            <p class="seperator"><a href="/ws/chat" target="_blank">给我留言</a></p>
+            <p><a href="/ws/chat" target="_blank">近期留言</a></p>
+          </div>
+      </span>
+      <span class="func-item">
+          <a href="#" target="_blank"><i class="icon iconfont icon-link"><span>友链</span></i></a>
+          <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
+            <a href="#" target="_blank">友情链接</a>
+          </div>
+      </span>
+      <span class="func-item">
+          <a href="#" target="_blank"><i class="icon iconfont icon-dingyue"><span>订阅</span></i></a>
+          <div><i class="left-arrow"></i><i class="left-arrow-clone"></i><a href="#" target="_blank">订阅我吧！(建设中..)</a></div>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import $ from "jquery";
-import 'font-awesome/css/font-awesome.min.css'
+import '../assets/font-awesome/css/font-awesome.min.css'
+import '../assets/icon_font/iconfont.css'
 export default {
   data() {
     return {};
@@ -342,4 +370,7 @@ left-arrow {
   margin-left: -5px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px; }
+  a {
+    text-decoration: none;
+  }
 </style>
