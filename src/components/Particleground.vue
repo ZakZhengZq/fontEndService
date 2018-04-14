@@ -1,5 +1,7 @@
 <template>
-  <div ref="particles" style="width: 100%; height: 100%;">
+  <div style="width: 100%; height: 100%; position: fixed; z-index: -1;">
+    <div ref="particles" style="width: 100%; height: 100%;">
+    </div>
   </div>
 </template>
 
