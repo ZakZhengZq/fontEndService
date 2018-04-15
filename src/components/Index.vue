@@ -1,9 +1,10 @@
 <template>
-  <div style="width: 100%; height: 100%; overflow: hidden;">
+  <div style="width: 100%; height: 100%; overflow: scroll;">
     <particleground/>
     <SideBar/>
     <div class="site">
       <Menu/>
+      <Inner/>
     </div>
   </div>
 </template>
@@ -12,11 +13,13 @@
 import Particleground from './Particleground'
 import SideBar from './SideBar'
 import Menu from './Menu'
+import Inner from './Inner'
 export default {
   components: {
     Particleground,
     SideBar,
-    Menu
+    Menu,
+    Inner
   },
   data () {
     return {

@@ -1,0 +1,65 @@
+<template>
+  <div rel="blog_base_inner">
+    <div>
+      <section>
+        <Article/>
+      </section>
+      <inner-menu/>
+    </div>
+</div>
+</template>
+
+<script>
+import InnerMenu from './InnerMenu'
+import Article from './Article'
+export default {
+  data () {
+    return {
+    }
+  },
+  components: {
+    InnerMenu,
+    Article
+  },
+  mounted () {
+  },
+  methods: {
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+div[rel="blog_base_inner"]{
+  width: 100%;
+  padding-left:  264px;
+  overflow-x: hidden;
+  // background: url("../assets/s-left.png") repeat-y left 0;
+  &:before,&:after{
+    content: "";
+    display: table;
+  }
+  &:after{ clear: both;}
+  div{
+    &:before,&:after{
+      content: "";
+      display: table;
+    }
+    &:after{ clear: both;}
+    section{
+      background-color: #fff;
+      float: right;
+      width: 100%;
+      height: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      min-height: 600px;
+    }
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 959px){
+    padding-left: 50px;
+    background-position: -290px 0 !important;
+  }
+}
+</style>
