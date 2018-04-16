@@ -18,7 +18,7 @@
                             <li><a href="/blog">博客文章</a></li>
                             <li><a href="/blog">干货收藏</a></li>
                             <li><a href="/ws/chat">聊天&留言</a></li>
-                            <li><a href="#">关于我</a></li>
+                            <li><router-link to="/Manager">管理</router-link></li>
                         </ul>
                     </div>
                 </div>

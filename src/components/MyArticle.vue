@@ -6,6 +6,7 @@
       <div class="articles" v-for="(item2,index) in item" :key="index">
         <div class="article-row">
             <article class="article article-summary">
+              <router-link :to="'/article/' + item2.id">
                 <div class="article-summary-inner">
                     <a href="/blog/2017/02/10/why-rax/" class="_thumbnail">
                         <span :style="'background-image:url('+item2.img+')'" class="thumbnail-image"></span>
@@ -19,6 +20,7 @@
                     </h2>
                     <p class="article-excerpt" v-text="item2.abstract"></p>
                 </div>
+              </router-link>
             </article>
         </div>
     </div>

@@ -4,7 +4,7 @@
     <SideBar/>
     <div class="site">
       <Menu/>
-      <Inner/>
+      <router-view></router-view>
       <Footer/>
     </div>
   </div>
@@ -14,14 +14,12 @@
 import Particleground from './Particleground'
 import SideBar from './SideBar'
 import Menu from './Menu'
-import Inner from './Inner'
 import Footer from './Footer'
 export default {
   components: {
     Particleground,
     SideBar,
     Menu,
-    Inner,
     Footer
   },
   data () {
