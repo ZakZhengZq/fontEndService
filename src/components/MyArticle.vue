@@ -1,23 +1,23 @@
 <template>
-  <section>
+  <section style="overflow: hidden;">
       <div class="articles-years">
-        <a href="/archives/2017" class="archive-year" v-text="item.date"><i class="icon fa fa-calendar-o"></i>2017</a>
+        <a href="/archives/2017" class="archive-year" v-text="date"><i class="icon fa fa-calendar-o"></i>2017</a>
       </div>
-      <div class="articles" v-for="(item2,index) in item.test" :key="index">
+      <div class="articles" v-for="(item2,index) in item" :key="index">
         <div class="article-row">
             <article class="article article-summary">
                 <div class="article-summary-inner">
                     <a href="/blog/2017/02/10/why-rax/" class="_thumbnail">
-                        <span style="background-image:url(//img.alicdn.com/tps/TB1LxebPVXXXXaHXpXXXXXXXXXX-900-500.png)" alt="Why Rax?" class="thumbnail-image"></span>
+                        <span :style="'background-image:url('+item2.img+')'" class="thumbnail-image"></span>
                     </a>
                     <div class="article-meta">
-                        <p class="category"><a class="article-category-link" href="/categories/无线开发/" v-text="item2.article1.name"></a></p>
-                        <p class="date"><time datetime="2017-02-10T10:17:45.000Z" itemprop="datePublished">2017-02-10</time></p>
+                        <p class="category"><a class="article-category-link" href="/categories/无线开发/" v-text="item2.type"></a></p>
+                        <p class="date"><time :datetime="item2.date" itemprop="datePublished">2017-02-10</time></p>
                     </div>
                     <h2 class="article-title">
-                        <a href="/blog/2017/02/10/why-rax/" class="title">Why Rax?</a>
+                        <a href="/blog/2017/02/10/why-rax/" class="title" v-text="item2.title"></a>
                     </h2>
-                    <p class="article-excerpt">https://github.com/alibaba/rax 从今年 1 月 12 日在 Weex Conf 上宣布 Rax 开源，至今已过去一个月左右的时间，这段时间里，Rax 拿到 2400+ 的 star, 我们深知这对一个开源产品来说是微不足道的，但是从中可以发现的是「前端或者 Weex 社区对于类 React 的技术方案是有很大需求的」。同时，结合近期 GitHub 上的相关 is</p>
+                    <p class="article-excerpt" v-text="item2.abstract"></p>
                 </div>
             </article>
         </div>
@@ -27,14 +27,13 @@
 
 <script>
 export default {
-  props: ['item'],
+  props: ['item', 'date'],
   data () {
     return {
     }
   },
   watch: {
     item: function (val) {
-      console.log('val  ', val)
     }
   },
   created () {
@@ -55,6 +54,13 @@ export default {
   -webkit-column-gap: 10px;
   -moz-column-gap: 10px;
   column-gap: 10px;
+  overflow: hidden;
+  width: 50%;
+  display: inline-table;
+  float: left;
+  @media only screen and (max-width: 479px) {
+    display: contents;
+  }
 }
 
 .article-row {
@@ -68,7 +74,7 @@ export default {
   box-sizing: border-box;
 }
 .article-summary {
-  width: 50%;
+  width: 100%;
   float: left;
   margin-bottom: 30px;
   a {
@@ -77,6 +83,9 @@ export default {
   }
   .article-summary-inner {
     margin-right: 25px;
+    // padding: 20px 10px 10px 10px;
+    // box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
+    // border-radius: 5px;
     ._thumbnail {
       height: 0;
       width: 100%;
@@ -109,8 +118,29 @@ export default {
       line-height: 1.6em;
       overflow: hidden;
       height: 6.4em;
+      padding: 0 5px;
     }
   }
+}
+.article-summary-inner:hover {
+    // box-shadow: 2px 8px 16px 2px rgba(0,0,0,0.2);
+    // transition: box-shadow .3s;
+    // -webkit-transition: box-shadow .3s;
+    cursor: pointer;
+    .thumbnail-image {
+      opacity: 0.7;
+      -webkit-transition: opacity 0.3s ease-in;
+      -moz-transition: opacity 0.3s ease-in;
+      -ms-transition: opacity 0.3s ease-in;
+      transition: opacity 0.3s ease-in;
+    }
+    .article-title {
+      color: red;
+      -webkit-transition: color 0.2s;
+      -moz-transition: color 0.2s;
+      -ms-transition: color 0.2s;
+      transition: color 0.2s;
+    }
 }
 .article-meta {
   height: 1.6em;
@@ -144,5 +174,45 @@ export default {
   -ms-transition: color 0.2s;
   transition: color 0.2s;
   margin-bottom: 10px;
+}
+.thumbnail-image {
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: opacity 0.3s ease-in;
+  -moz-transition: opacity 0.3s ease-in;
+  -ms-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+@media only screen and (max-width: 479px) {
+  .article-row {
+    padding: 0 10px 0 10px;
+    border: none;
+  }
+  .article-summary {
+    width: 100%;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding: 0 3%;
+    border: 1px solid #eee;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  .site-header {
+    padding:24px 0 0;
+  }
+  .article-summary-inner{
+    margin-right: 0px !important;
+    padding: 10px 15px 10px;
+  }
 }
 </style>

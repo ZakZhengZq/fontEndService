@@ -1,6 +1,6 @@
 <template>
     <div class="article" id="articleId">
-        <MyArticle v-for="(item, index) in articleInfor" :key="index" v-bind:item="item"></MyArticle>
+        <MyArticle v-for="(item, key, index) in articleInfor" v-bind:item="item" :date="key" :key="index"></MyArticle>
         <pagination v-on:getArticles="updateArticles" />
     </div>
 </template>
@@ -22,10 +22,7 @@ export default {
   },
   methods: {
     updateArticles: function (arts) {
-      arts.forEach(art => {
-        this.articleInfor.push(art)
-      })
-      console.log('up  ', this.articleInfor)
+      this.articleInfor = arts
     }
   }
 }

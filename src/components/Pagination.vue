@@ -31,6 +31,7 @@ export default {
   },
 mounted:function () {
     this.GETPAGES();
+    this.GETARTSBYINDEX(1);
 },
 methods: {
     select: function (event) {
@@ -199,6 +200,7 @@ ul._pagination {
         border-radius: 5px;
       }
       &:hover {
+        cursor: pointer;
         &:not(._active) {
           background-color: #ddd;
         }

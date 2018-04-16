@@ -120,4 +120,9 @@ nav {
     }
   }
 }
+@media only screen and (max-width: 479px) {
+  .site-header {
+    padding:24px 0 0;
+  }
+}
 </style>

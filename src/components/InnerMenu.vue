@@ -88,7 +88,7 @@ export default {
       width: 264px;
       float: left;
       margin-left: -264px;
-      background-color: rgba(240, 240, 240, 1);
+      // background-color: rgba(240, 240, 240, 1);
   }
   @media only screen and (min-width: 480px) and (max-width: 959px){
     #aside {

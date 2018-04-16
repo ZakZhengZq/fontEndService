@@ -6,7 +6,7 @@
       </section>
       <inner-menu/>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -33,7 +33,7 @@ div[rel="blog_base_inner"]{
   width: 100%;
   padding-left:  264px;
   overflow-x: hidden;
-  // background: url("../assets/s-left.png") repeat-y left 0;
+  background: url("../assets/s-left.png") repeat-y left 0;
   &:before,&:after{
     content: "";
     display: table;
@@ -60,6 +60,13 @@ div[rel="blog_base_inner"]{
   @media only screen and (min-width: 480px) and (max-width: 959px){
     padding-left: 50px;
     background-position: -290px 0 !important;
+  }
+  @media only screen and (max-width: 479px) {
+    padding: 0px;
+    background: none;
+    section{
+      float: none;
+    }
   }
 }
 </style>
