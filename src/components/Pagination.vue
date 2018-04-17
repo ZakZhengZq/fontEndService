@@ -26,12 +26,29 @@ export default {
         left:false,
         right:false,
         lastNum:false,
-        preSec:1
+        preSec:1,
+        type: ''
     }
   },
 mounted:function () {
     this.GETPAGES();
     this.GETARTSBYINDEX(1);
+},
+watch: {
+    '$route': function (val) {
+        this.type = val.path;
+        this.staticNum = [{id:2,display:false,val:2},{id:3,display:false,val:3},{id:4,display:false,val:4}
+            ,{id:5,display:false,val:5},{id:6,display:false,val:6}];
+        this.pageNum = 15;
+        this.ellipsis1 = false;
+        this.ellipsis2 = false;
+        this.left = false;
+        this.right = false;
+        this.lastNum = false;
+        this.preSec = 1;
+        this.GETPAGES();
+        this.GETARTSBYINDEX(1);
+    }
 },
 methods: {
     select: function (event) {
@@ -127,7 +144,7 @@ methods: {
             document.getElementById(this.preSec + 1 + '').click()
     },
     GETPAGES: function () {
-        axios.get('http://localhost:3000/blog/index')
+        axios.get(this.type.indexOf('tools') > 0 ? 'http://localhost:3000/tools/index' : 'http://localhost:3000/blog/index')
             .then((response) => {
                 this.pageNum = parseInt(response.data);
                 this.initpaga()
@@ -162,7 +179,7 @@ methods: {
         }
     },
     GETARTSBYINDEX:function (x) {
-        axios.post('http://localhost:3000/blog/arts', {index:x})
+        axios.post(this.type.indexOf('tools') > 0 ? 'http://localhost:3000/tools' : 'http://localhost:3000/blog/arts', {index:x})
             .then( (response)=> {
                 this.$emit('getArticles', response.data);
             })

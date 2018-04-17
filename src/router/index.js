@@ -23,6 +23,10 @@ export default new Router({
           component: Inner
         },
         {
+          path: '/tools',
+          component: Inner
+        },
+        {
           path: '/article/:id',
           component: ShowArticle,
           props: true

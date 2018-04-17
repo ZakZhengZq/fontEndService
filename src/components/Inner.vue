@@ -53,7 +53,7 @@ div[rel="blog_base_inner"]{
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      min-height: 600px;
+      min-height: 1700px;
     }
   }
 

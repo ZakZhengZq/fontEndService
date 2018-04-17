@@ -15,8 +15,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/blog">博客文章</a></li>
-                            <li><a href="/blog">干货收藏</a></li>
+                            <li><router-link to="/blog/">博客文章</router-link></li>
+                            <li><router-link to="/tools">干货收藏</router-link></li>
                             <li><a href="/ws/chat">聊天&留言</a></li>
                             <li><router-link to="/Manager">管理</router-link></li>
                         </ul>

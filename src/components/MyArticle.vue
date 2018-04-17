@@ -8,7 +8,7 @@
             <article class="article article-summary">
               <router-link :to="'/article/' + item2.id">
                 <div class="article-summary-inner">
-                    <a href="/blog/2017/02/10/why-rax/" class="_thumbnail">
+                    <a class="_thumbnail">
                         <span :style="'background-image:url('+item2.img+')'" class="thumbnail-image"></span>
                     </a>
                     <div class="article-meta">
@@ -16,7 +16,7 @@
                         <p class="date"><time :datetime="item2.date" itemprop="datePublished">2017-02-10</time></p>
                     </div>
                     <h2 class="article-title">
-                        <a href="/blog/2017/02/10/why-rax/" class="title" v-text="item2.title"></a>
+                        <a class="title" v-text="item2.title"></a>
                     </h2>
                     <p class="article-excerpt" v-text="item2.abstract"></p>
                 </div>
