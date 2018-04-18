@@ -6,9 +6,8 @@
       <div class="articles" v-for="(item2,index) in item" :key="index">
         <div class="article-row">
             <article class="article article-summary">
-              <router-link :to="'/article/' + item2.id">
-                <div class="article-summary-inner">
-                    <a  :href="item2.url" class="_thumbnail">
+                <div class="article-summary-inner" v-on:click="linkTo" :i="storeItem(item2)">
+                    <a class="_thumbnail">
                         <span :style="'background-image:url('+item2.img+')'" class="thumbnail-image"></span>
                     </a>
                     <div class="article-meta">
@@ -20,7 +19,6 @@
                     </h2>
                     <p class="article-excerpt" v-text="item2.abstract"></p>
                 </div>
-              </router-link>
             </article>
         </div>
     </div>
@@ -32,9 +30,16 @@ export default {
   props: ['item', 'date'],
   data () {
     return {
+      item2: {}
     }
   },
   methods: {
+    linkTo: function (e) {
+      location.href = this.item2.url
+    },
+    storeItem: function (i) {
+      this.item2 = i
+    }
   },
   created () {
   }

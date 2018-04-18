@@ -2,7 +2,7 @@
   <div>
     <div ref="art" style="overflow: hidden"></div>
     <div class="comments">
-      <vue-disqus shortname="feng-kuang-da-shi-tou-de-ge-ren-wang-zhan" :identifier="dq_id" url="dq_url"></vue-disqus>
+      <vue-disqus shortname="hunters-blog" :identifier="dq_id" :url="dq_url" :title="title"></vue-disqus>
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 import axios from 'axios'
 import { markdown } from 'markdown'
-import VueDisqus from 'vue-disqus/VueDisqus.vue'
+import VueDisqus from './VueDisqus.vue'
 
 export default {
   props: ['id'],
@@ -21,7 +21,8 @@ export default {
     return {
       article: '',
       dq_url: location.href,
-      dq_id: this.id
+      dq_id: this.$route.path,
+      title: ''
     }
   },
   created () {
@@ -34,6 +35,7 @@ export default {
       })
         .then((response) => {
           this.$refs.art.innerHTML = markdown.toHTML(response.data[0].article)
+          this.title = response.data[0].title
         })
         .catch(function (error) {
           console.log(error)
