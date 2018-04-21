@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Welcome from '@/components/Welcome'
 import Index from '@/components/Index'
 import Inner from '@/components/Inner'
+import ToolsAndPagination from '@/components/ToolsAndPagination'
+import Article from '@/components/Article'
 import ShowArticle from '@/components/ShowArticle'
 import Manager from '@/components/Manager'
 import Chart from '@/components/Chart'
@@ -21,12 +23,18 @@ export default new Router({
       component: Index,
       children: [
         {
-          path: '/',
-          component: Inner
-        },
-        {
-          path: '/tools',
-          component: Inner
+          path: 'main',
+          component: Inner,
+          children: [
+            {
+              path: 'article',
+              component: Article
+            },
+            {
+              path: 'tools',
+              component: ToolsAndPagination
+            }
+          ]
         },
         {
           path: '/chart',

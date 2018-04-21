@@ -1,17 +1,17 @@
 <template>
     <div class="article" id="articleId">
-        <MyArticle v-for="(item, key, index) in articleInfor" v-bind:item="item" :date="key" :key="index"></MyArticle>
+        <Tools v-for="(item, key, index) in articleInfor" v-bind:item="item" :date="key" :key="index"></Tools>
         <pagination v-on:getArticles="updateArticles" />
     </div>
 </template>
 
 <script>
-import MyArticle from './MyArticle'
 import Pagination from './Pagination'
+import Tools from './Tools'
 export default {
   components: {
-    MyArticle,
-    Pagination
+    Pagination,
+    Tools
   },
   data () {
     return {

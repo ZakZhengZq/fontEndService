@@ -2,7 +2,7 @@
   <div rel="blog_base_inner">
     <div>
       <section>
-        <Article/>
+        <router-view></router-view>
       </section>
       <inner-menu/>
     </div>
@@ -11,15 +11,13 @@
 
 <script>
 import InnerMenu from './InnerMenu'
-import Article from './Article'
 export default {
   data () {
     return {
     }
   },
   components: {
-    InnerMenu,
-    Article
+    InnerMenu
   },
   mounted () {
   },

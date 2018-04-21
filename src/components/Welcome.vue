@@ -3,7 +3,7 @@
     <div id="menu">
         <h1>疯狂大石头</h1>
         <h2>Standing on Shoulders of Giants</h2>
-        <p><router-link to="/blog">Blog</router-link></p>
+        <p><router-link to="/blog/main/article">Blog</router-link></p>
         <p><a href="https://github.com/byCrazyBStone">Github</a></p>
         <p><a href="mailto:zzqworkspace@126.com">Email</a></p>
         <p><a>微博</a></p>

@@ -27,29 +27,29 @@ export default {
         right:false,
         lastNum:false,
         preSec:1,
-        type: ''
+        type: this.$route.path
     }
   },
 mounted:function () {
     this.GETPAGES();
-    this.GETARTSBYINDEX(1);
+    this.GETARTSBYINDEX(0);
 },
-watch: {
-    '$route': function (val) {
-        this.type = val.path;
-        this.staticNum = [{id:2,display:false,val:2},{id:3,display:false,val:3},{id:4,display:false,val:4}
-            ,{id:5,display:false,val:5},{id:6,display:false,val:6}];
-        this.pageNum = 15;
-        this.ellipsis1 = false;
-        this.ellipsis2 = false;
-        this.left = false;
-        this.right = false;
-        this.lastNum = false;
-        this.preSec = 1;
-        this.GETPAGES();
-        this.GETARTSBYINDEX(1);
-    }
-},
+// watch: {
+//     '$route': function (val) {
+//         this.type = val.path;
+//         this.staticNum = [{id:2,display:false,val:2},{id:3,display:false,val:3},{id:4,display:false,val:4}
+//             ,{id:5,display:false,val:5},{id:6,display:false,val:6}];
+//         this.pageNum = 15;
+//         this.ellipsis1 = false;
+//         this.ellipsis2 = false;
+//         this.left = false;
+//         this.right = false;
+//         this.lastNum = false;
+//         this.preSec = 1;
+//         this.GETPAGES();
+//         this.GETARTSBYINDEX(0);
+//     }
+// },
 methods: {
     select: function (event) {
         this.preSec = parseInt(event.target.id);
