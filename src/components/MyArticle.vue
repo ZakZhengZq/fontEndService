@@ -3,7 +3,7 @@
       <div class="articles-years">
         <a href="/archives/2017" class="archive-year" v-text="date"><i class="icon fa fa-calendar-o"></i>2017</a>
       </div>
-      <div class="articles" v-for="(item2,index) in item" :key="index">
+      <div class="articles" v-for="(item2,index) in item" :key="index" v-if="filterKey ? filterKey === item2.type : true">
         <div class="article-row">
             <article class="article article-summary">
               <router-link :to="'/article/' + item2.id">
@@ -28,15 +28,29 @@
 </template>
 
 <script>
+import bus from '../js/eventBus.js'
 export default {
   props: ['item', 'date'],
   data () {
     return {
+      isFilter: false,
+      filterKey: ''
     }
   },
   methods: {
   },
   created () {
+    bus.$on('sendMsgToInhours', (msg) => {
+      if (msg.indexOf('-') < 0) {
+        if (!this.isFilter) {
+          this.filterKey = msg
+          this.isFilter = true
+        } else {
+          this.filterKey = ''
+          this.isFilter = false
+        }
+      }
+    })
   }
 }
 </script>

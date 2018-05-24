@@ -13,17 +13,19 @@
                 <div class="widget-latest">
                     <ul id="recent-post">
                         <li v-for="(item, index) in articleList" :key="index">
+                          <router-link :to="'/article/' + item.id">
                             <div class="item-thumbnail">
-                                <a href="/blog/2017/05/18/how-to-display-git-diff/">
+                                <a>
                                     <span v-bind:style="'background-image:url('+item.img+')'" v-bind:alt=item.alt class="thumbnail-image"></span>
                                 </a>
                             </div>
                             <div class="item-inner">
                                 <p class="item-category"><a class="article-category-link" v-bind:href=item.category_href v-text="item.category"></a></p>
-                                <p class="item-title"><a v-bind:href=item.title_href class="title" v-text="item.title"></a></p>
+                                <p class="item-title"><a class="title" v-text="item.title"></a></p>
                                 <p class="item-author" v-text="item.author"></p>
                                 <p class="item-date">at <time datetime="2017-05-18T01:56:11.000Z" itemprop="datePublished" v-text="item.date"></time></p>
                             </div>
+                          </router-link>
                         </li>
                     </ul>
                 </div>
@@ -33,7 +35,7 @@
                 <div class="widget">
                     <ul>
                         <li v-for="(item, index) in fenleiList" :key="index">
-                            <a v-text="item.type">Node.js</a>
+                            <a v-text="item.type" v-on:click="artFilter(item.type)">Node.js</a>
                             <span class="category-list-count" v-text="item.num">46</span>
                         </li>
                     </ul>
@@ -44,7 +46,7 @@
                 <div class="widget">
                     <ul >
                         <li v-for="(item, index) in guidangList" :key="index">
-                            <a v-text="item.mon"></a>
+                            <a v-text="item.mon" v-on:click="artFilter(item.mon)"></a>
                             <span class="category-list-count" v-text="item.num">46</span>
                         </li>
                     </ul>
@@ -56,6 +58,7 @@
 
 <script>
 import axios from 'axios'
+import bus from '../js/eventBus.js'
 export default {
   data () {
     return {
@@ -78,6 +81,9 @@ export default {
         this.fenleiList = fenlei.data
         this.guidangList = guidang.data
       }))
+    },
+    artFilter: function (msg) {
+      bus.$emit('sendMsgToInhours', msg)
     }
   }
 }

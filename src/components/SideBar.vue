@@ -25,7 +25,7 @@
       <span class="func-item">
         <a href="#" target="_blank"><i class="func-fb icon iconfont icon-fenxiang1"><span>分享</span></i></a>
         <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
-          <p class="seperator sharecanvas"><a href="javascript: void(0);">截屏分享(建设中..)</a></p>
+          <p class="seperator sharecanvas" v-on:click="screen"><a>截屏分享</a></p>
           <p><a href="#" target="_blank">微博关注</a></p>
         </div>
       </span>
@@ -33,7 +33,7 @@
         <i class="icon iconfont icon-guanyu"><span>关于</span></i>
         <div>
           <i class="left-arrow"></i><i class="left-arrow-clone"></i>
-          <p><a href="/about/" class="func-about-link" target="_blank">关于作者</a></p>
+          <p v-on:click="intro = !intro"><a class="func-about-link" target="_blank">关于作者</a></p>
           <div id="followMeOnWeibo"></div>
         </div>
       </span>
@@ -65,6 +65,21 @@
           <div><i class="left-arrow"></i><i class="left-arrow-clone"></i><a href="#" target="_blank">订阅我吧！(建设中..)</a></div>
       </span>
     </div>
+    <Modal
+        v-model="dialog"
+        title="截图并分享！"
+        @on-ok="ok"
+        @on-cancel="cancel">
+        <p id="img"></p>
+        <div id="share" class="social-share" data-title="来自 疯狂大石头 个人博客的分享" data-source="来自 疯狂大石头 个人博客的分享"></div>
+    </Modal>
+    <Modal
+        v-model="intro"
+        title="关于作者"
+        @on-ok="ok"
+        @on-cancel="cancel">
+        <p></p>
+    </Modal>
   </div>
 </template>
 
@@ -73,9 +88,15 @@
 import $ from "jquery";
 import '../assets/font-awesome/css/font-awesome.min.css'
 import '../assets/icon_font/iconfont.css'
+import '../../node_modules/social-share.js/dist/js/social-share.min.js'
+import '../../node_modules/social-share.js/dist/css/share.min.css'
+import html2canvas from 'html2canvas'
 export default {
   data() {
-    return {};
+    return {
+      dialog: false,
+      intro: false
+    };
   },
   mounted() {
     var left=48;
@@ -103,27 +124,61 @@ export default {
     });
 
     $(".icon-yewan").click(function () {
-        $("body").toggleClass("yewan");
-
+      document.body.style.background = '#222'
+      document.body.style.color = '#ccc'
     });
 
     $(".icon-baitian").click(function () {
-        $("body").toggleClass("yewan");
+      document.body.style.background = ''
+      document.body.style.color = ''
     })
 
     $(".font-type-song").click(function () {
-        $("*").toggleClass("song");
+      document.getElementById('app').style.fontFamily = "宋体"
     })
 
     $(".font-type-hei").click(function () {
-        $("*").toggleClass("hei");
+      document.getElementById('app').style.fontFamily = '"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu'
     })
   },
-  methods: {}
+  created() {
+  },
+  methods: {
+    screen () {
+      this.dialog = true;
+      html2canvas(document.body).then((canvas) => {
+        canvas.id = "mycanvas";
+        var dataUrl = canvas.toDataURL();
+        var newImg = document.createElement("img");
+        newImg.src =  dataUrl;
+        var share = document.getElementById("share"); 
+        share.setAttribute("data-image", dataUrl);
+        newImg.style = 'width: 500px; height: 300px;';
+        var father = document.getElementById('img');
+        while(father.hasChildNodes())
+        {  
+            father.removeChild(father.firstChild);  
+        }
+        father.appendChild(newImg);
+      });
+    },
+    ok () {
+      this.$Message.info('资源已清理！');
+    },
+    cancel () {
+      this.$Message.info('已取消！');
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.dialogImg {
+  width: 300px;
+  height: 600px;
+}
+.song{font-family:"宋体"}
+.hei{ font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu }
 .sidebar {
   position: fixed;
   _display: none;
@@ -413,4 +468,7 @@ export default {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
+.yewan {
+  background: #222;
+  color: #ccc; }
 </style>
