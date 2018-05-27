@@ -18,7 +18,7 @@
                             <li><router-link to="/blog/main/article">博客文章</router-link></li>
                             <li><router-link to="/blog/main/tools">干货收藏</router-link></li>
                             <li><router-link to="/chart">聊天&留言</router-link></li>
-                            <li><router-link to="/Manager">管理</router-link></li>
+                            <li><router-link to="/ManagerLogin">管理</router-link></li>
                         </ul>
                     </div>
                 </div>

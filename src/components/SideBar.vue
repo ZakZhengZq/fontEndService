@@ -5,7 +5,7 @@
         <i class="icon iconfont icon-shouyeshouye"><span>目录</span></i>
         <div>
           <i class="left-arrow"></i><i class="left-arrow-clone"></i>
-          <a href="javascript:void(0);" onclick="return false;">显示目录</a>
+          <a href="javascript:void(0);" onclick="return false;">主页</a>
         </div>
       </span>
       <span class="func-item">
@@ -26,7 +26,6 @@
         <a href="#" target="_blank"><i class="func-fb icon iconfont icon-fenxiang1"><span>分享</span></i></a>
         <div><i class="left-arrow"></i><i class="left-arrow-clone"></i>
           <p class="seperator sharecanvas" v-on:click="screen"><a>截屏分享</a></p>
-          <p><a href="#" target="_blank">微博关注</a></p>
         </div>
       </span>
       <span class="func-item">
@@ -74,11 +73,43 @@
         <div id="share" class="social-share" data-title="来自 疯狂大石头 个人博客的分享" data-source="来自 疯狂大石头 个人博客的分享"></div>
     </Modal>
     <Modal
+        width=700
         v-model="intro"
         title="关于作者"
         @on-ok="ok"
         @on-cancel="cancel">
-        <p></p>
+        <Collapse v-model="value1">
+          <Panel name="1">
+              个人简介
+              <img slot="content" src="../assets/photo.png"  alt="作者" style="float:left; width:150px; height:150px; border-radius:75px; margin:0 10px;"/>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;My name is XXX. You can call me Hunter. I was born in 1996.</p>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;I am a Bachelor of Engineering, graduated from Tianjin Polytechnic University, and now am employed by MeiTuan in Beijing.</p>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;Life is colorful, this website was, is and will be the window which used to present the color of my life.</p>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;I like programming, reading book, surfing internet, traveling, and I love making friends very much</p>
+          </Panel>
+          <Panel name="2">
+              文章版权
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)</p>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;所转载的文章皆已通知作者本人。</p>
+              <p slot="content" class="intro">&nbsp;&nbsp;&nbsp;&nbsp;文章皆为个人观点，不代表所服务的公司。</p>
+          </Panel>
+          <Panel name="3">
+              联系方式
+              <div slot="content">
+                <ul style="margin-left: 20px;">
+                  <li class="intro">Github： <a href="https://github.com/byCrazyBStone" target="_blank">@byCrazyBStone</a></li>
+                  <li class="intro">Social： <a href="http://weibo.com/" target="_blank">新浪微博</a>
+                  <span class="grey" aria-hidden="true" tabindex="0">|</span>
+                  <a href="https://twitter.com/" target="_blank">Twitter</a>
+                  <span class="grey" aria-hidden="true" tabindex="0">|</span>
+                  <a href="http://www.zhihu.com/" target="_blank">知乎</a>
+                  <span class="grey" aria-hidden="true" tabindex="0">|</span>
+                  <a href="https://plus.google.com/" target="_blank">G+</a></li>
+                  <li class="intro">E-mail： <a href="" target="_blank">xxxxx(at)gmail.com</a></li>
+                 </ul>
+              </div>
+          </Panel>
+        </Collapse>
     </Modal>
   </div>
 </template>
@@ -95,7 +126,8 @@ export default {
   data() {
     return {
       dialog: false,
-      intro: false
+      intro: false,
+      value1: '1'
     };
   },
   mounted() {
@@ -173,6 +205,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.intro {
+    line-height: 28px;
+    font-size: 14px;
+    // margin-bottom: 15px;
+}
 .dialogImg {
   width: 300px;
   height: 600px;

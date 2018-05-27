@@ -8,6 +8,13 @@ import Article from '@/components/Article'
 import ShowArticle from '@/components/ShowArticle'
 import Manager from '@/components/Manager'
 import Chart from '@/components/Chart'
+import ManagerLogin from '@/components/ManagerLogin'
+import ManagerIndex from '@/components/ManagerIndex'
+import DeleteArticle from '@/components/DeleteArticle'
+import ChangeArticle from '@/components/ChangeArticle'
+import DeleteTools from '@/components/DeleteTools'
+import AddTool from '@/components/AddTool'
+import ChangeTool from '@/components/ChangeTool'
 
 Vue.use(Router)
 
@@ -48,6 +55,40 @@ export default new Router({
         {
           path: '/manager',
           component: Manager
+        }
+      ]
+    },
+    {
+      path: '/managerlogin',
+      component: ManagerLogin
+    },
+    {
+      path: '/managerindex',
+      component: ManagerIndex,
+      children: [
+        {
+          path: '/addarticle',
+          component: Manager
+        },
+        {
+          path: '/deletearticle',
+          component: DeleteArticle
+        },
+        {
+          path: '/changearticle',
+          component: ChangeArticle
+        },
+        {
+          path: '/deletetools',
+          component: DeleteTools
+        },
+        {
+          path: '/addtool',
+          component: AddTool
+        },
+        {
+          path: '/changetool',
+          component: ChangeTool
         }
       ]
     }
