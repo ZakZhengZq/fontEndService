@@ -15,6 +15,11 @@ import ChangeArticle from '@/components/ChangeArticle'
 import DeleteTools from '@/components/DeleteTools'
 import AddTool from '@/components/AddTool'
 import ChangeTool from '@/components/ChangeTool'
+import TypePrecent from '@/components/TypePrecent'
+import Liulang from '@/components/Liulang'
+import HuanYing from '@/components/HuanYing'
+import MapL from '@/components/Map'
+import ChangePwd from '@/components/ChangePwd'
 
 Vue.use(Router)
 
@@ -65,6 +70,13 @@ export default new Router({
     {
       path: '/managerindex',
       component: ManagerIndex,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.flag) {
+          next()
+        } else {
+          next('/managerlogin')
+        }
+      },
       children: [
         {
           path: '/addarticle',
@@ -89,6 +101,26 @@ export default new Router({
         {
           path: '/changetool',
           component: ChangeTool
+        },
+        {
+          path: '/typeprecent',
+          component: TypePrecent
+        },
+        {
+          path: '/liulang',
+          component: Liulang
+        },
+        {
+          path: '/huanying',
+          component: HuanYing
+        },
+        {
+          path: '/map',
+          component: MapL
+        },
+        {
+          path: '/changepwd',
+          component: ChangePwd
         }
       ]
     }

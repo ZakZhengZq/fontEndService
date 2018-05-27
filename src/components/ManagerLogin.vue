@@ -411,7 +411,8 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
           if (valid) {
-              if (this.formInline.user === 'zhengziqiang' || this.formInline.password === 'test123'){
+              if (this.formInline.user === 'zhengziqiang' || this.formInline.password === localStorage.p){
+                localStorage.flag = 1
                 this.$router.push({path: '/managerindex'});
                 this.$Message.success('Success!');
               } else {

@@ -4,24 +4,23 @@
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1" style="z-index:8;">
                     <div class="layout-logo">
-                      <span style="">PersonalBlog 管理中心</span>
+                      <span class="title">PersonalBlog 管理中心</span>
                     </div>
                     <div class="layout-nav">
-                        <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
-                        </MenuItem>
-                        <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
-                        </MenuItem>
-                        <MenuItem name="3">
-                            <Icon type="ios-analytics"></Icon>
-                            Item 3
-                        </MenuItem>
-                        <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
+                        <!-- <MenuItem name="3" @on-select="toIndex" class="back">
+                            <Icon type="reply"></Icon>
+                            返回首页
+                        </MenuItem> -->
+                        <MenuItem name="4" class="user">
+                            <Poptip
+                                style="color: #aaa;"
+                                confirm
+                                title="退出登录?"
+                                @on-ok="ok"
+                                @on-cancel="cancel">
+                                    <Icon type="person"></Icon>
+                                    管理员
+                            </Poptip>
                         </MenuItem>
                     </div>
                 </Menu>
@@ -50,10 +49,21 @@
                         <Submenu name="3">
                             <template slot="title">
                                 <Icon type="ios-analytics"></Icon>
-                                Item 3
+                                网站统计
                             </template>
-                            <MenuItem name="3-1">Option 1</MenuItem>
-                            <MenuItem name="3-2">Option 2</MenuItem>
+                            <MenuItem name="3-1"><router-link to="/typeprecent">类型占比</router-link></MenuItem>
+                            <MenuItem name="3-2"><router-link to="/liulang">月流量统计</router-link></MenuItem>
+                            <MenuItem name="3-3"><router-link to="/huanying">类型热度排名</router-link></MenuItem>
+                            <MenuItem name="3-3"><router-link to="/map">流量地图</router-link></MenuItem>
+                        </Submenu>
+                        <Submenu name="1">
+                            <template slot="title">
+                                <Icon type="ios-navigate"></Icon>
+                                信息管理
+                            </template>
+                            <MenuItem name="1-1"><router-link to="/changepwd">修改密码</router-link></MenuItem>
+                            <!-- <MenuItem name="1-2"><router-link to="/addarticle">新增文章</router-link></MenuItem>
+                            <MenuItem name="1-3"><router-link to="/changearticle">修改文章</router-link></MenuItem> -->
                         </Submenu>
                     </Menu>
                 </Sider>
@@ -75,10 +85,40 @@
     </div>
 </template>
 <script>
+/* eslint-disable */ 
 export default {
+    methods: {
+        ok () {
+            localStorage.flag = ''
+            this.$router.push({path: '/managerlogin'});
+            this.$Message.info('已退出');
+        },
+        toIndex () {
+            console.log('dsa')
+            localStorage.flag = ''
+            this.$router.push({path: '/blog'});
+            this.$Message.info('已退出');
+        },
+        cancel () {
+            this.$Message.info('已取消！');
+        }
+    }
 }
 </script>
 <style scoped>
+.back{
+    position: absolute;
+    right: 100px;
+}
+.user{
+    position: absolute;
+    right: 20px;
+}
+.title{
+    position: absolute;
+    top: -13px;
+    left: 20px;
+}
 .layout{
     border: 1px solid #d7dde4;
     background: #f5f7f9;

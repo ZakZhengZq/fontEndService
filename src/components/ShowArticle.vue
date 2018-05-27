@@ -19,14 +19,32 @@
             </div>
           </Card>
       </Content>
-      <Footer class="layout-footer-center">2014-2018 &copy; PrivateBlog</Footer>
+      <Footer class="layout-footer-center" style="text-align:center;font-size:16px;">
+        打个分吧~<Rate v-model="value"></Rate> </br>
+         <Button type="warning" shape="circle" style="margin-top:20px;" @click="shang">赏</Button>
+      </Footer>
+      <Modal v-model="showShang" width="420">
+        <p slot="header" style="text-align:center">
+            <Icon type="happy" style="color:yellow;font-size:22px;"></Icon>
+            <span>您的支持是我最大的动力！</span>
+        </p>
+        <div style="text-align:center;">
+            <Spin size="large" v-if="!isShanging" style="margin-left:180px;">
+            </Spin>
+            <img src="../assets/shou.png" v-if="isShanging" style="width:300px;height:400px;"/>
+        </div>
+        <div slot="footer">
+            <Button type="warning" size="large" long :loading="modal_loading" @click="cancelShang">打好啦~</Button>
+        </div>
+      </Modal>
       <div class="comments">
-      <vue-disqus shortname="hunters-blog" :identifier="dq_id" :url="dq_url" :title="title"></vue-disqus>
-    </div>
+        <vue-disqus shortname="hunters-blog" :identifier="dq_id" :url="dq_url" :title="title"></vue-disqus>
+      </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios'
 import marked from 'marked'
 import VueDisqus from './VueDisqus.vue'
@@ -42,7 +60,10 @@ export default {
       dq_url: location.href,
       dq_id: this.$route.path,
       title: '',
-      artInfo: {}
+      artInfo: {},
+      value: 5,
+      isShanging: false,
+      showShang: false 
     }
   },
   created () {
@@ -62,6 +83,14 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
+    },
+    shang () {
+      this.showShang = true
+      setTimeout(()=> this.isShanging=true, 2000)
+    },
+    cancelShang () {
+      this.showShang = false
+      this.isShanging = false
     }
   }
 }
