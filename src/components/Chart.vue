@@ -97,11 +97,12 @@ export default {
   },
   created () {
     let names = ['高富帅','白富美','女汉子','单身狗','斯巴达','王的女人','地表最强','学霸','渣渣','屌丝'];
-    let name = names[1];
+    let num = Math.floor(Math.random()*10+1)
+    let name = names[num];
     let user = {
-        id: 1,
+        id: num,
         name,
-        image: 'https://i.loli.net/2018/04/18/5ad71f07ca2fb.png'
+        image: `http://localhost:3000/static/images/${num}.png`
     }  
     let token = Buffer.from(JSON.stringify(user)).toString('base64');
     let ws = new WebSocket(`ws://localhost:3000/ws/chat?token=${token}`);
